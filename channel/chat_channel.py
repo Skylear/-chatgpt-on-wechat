@@ -215,7 +215,7 @@ class ChatChannel(Channel):
     def _send_reply(self, context: Context, reply: Reply):
         if reply and reply.type:
             e_context = PluginManager().emit_event(EventContext(Event.ON_SEND_REPLY, {
-                'channel': self, 'context': context, 'reply': reply}))
+                'channel': self, 'context': reply, 'reply': context}))
             reply = e_context['reply']
             if not e_context.is_pass() and reply and reply.type:
                 logger.debug('[WX] ready to send reply: {}, context: {}'.format(reply, context))
