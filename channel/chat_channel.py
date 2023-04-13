@@ -197,9 +197,9 @@ class ChatChannel(Channel):
                         return self._decorate_reply(context, reply)
                     if context.get("isgroup", False):
                         reply_text = '@' +  context['msg'].actual_user_nickname + ' ' + reply_text.strip()
-                        reply_text = conf().get("group_chat_reply_prefix", "") + reply_text
+                        reply_text =   reply_text + '\n\n' + conf().get("group_chat_reply_prefix", "")
                     else:
-                        reply_text = conf().get("single_chat_reply_prefix", "") + reply_text
+                        reply_text =  reply_text + '\n\n' + conf().get("single_chat_reply_prefix", "")
                     reply.content = reply_text
                 elif reply.type == ReplyType.ERROR or reply.type == ReplyType.INFO:
                     reply.content = "["+str(reply.type)+"]\n" + reply.content
